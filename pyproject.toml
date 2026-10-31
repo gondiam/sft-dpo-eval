@@ -17,7 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # GPU stages only (Kaggle); local work needs none of these
-train = ["torch", "transformers>=5", "trl>=1", "peft", "accelerate", "pyyaml"]
+train = ["torch", "transformers==5.22.1", "trl==1.17.1", "peft==0.21.2", "accelerate==1.15.0", "pyyaml"]
 
 [dependency-groups]
 dev = ["pytest", "ruff", "mypy"]
