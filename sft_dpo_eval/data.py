@@ -37,8 +37,8 @@ def make_splits(
     n_mmlu_pool: int,
     *,
     n_dev: int = 100,
-    n_sft: int = 20_000,
-    n_dpo: int = 5_000,
+    n_sft: int = 10_000,
+    n_dpo: int = 2_500,
     n_mmlu: int = 500,
     seed: int = 0,
 ) -> dict[str, list[int]]:

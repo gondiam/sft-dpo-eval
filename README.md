@@ -75,8 +75,12 @@ conclusion.
 |---|---|---|---|
 | test | `pqa_labeled`, official test IDs | 500 | final evaluation only, frozen |
 | dev | `pqa_labeled`, rest | 100 | checkpoint and prompt sanity checks |
-| sft | `pqa_artificial` (balanced yes/no) + remaining `pqa_labeled` | 20,000 + 400 | SFT |
-| dpo | `pqa_artificial`, disjoint from sft | 5,000 questions | DPO pairs |
+| sft | `pqa_artificial` (balanced yes/no) + remaining `pqa_labeled` | 10,000 + 400 | SFT |
+| dpo | `pqa_artificial`, disjoint from sft | 2,500 questions | DPO pairs |
+
+SFT and DPO sizes were halved (from 20,000 and 5,000) after a smoke run on
+the T4 measured the full plan at about 22 GPU hours, against a weekly
+Kaggle quota of 30. Nothing had been trained or evaluated on test yet.
 
 **Output format:** `Reasoning: <1-3 sentences>` then `Answer: yes|no|maybe`.
 Outputs that do not parse count as wrong, and their rate is reported.

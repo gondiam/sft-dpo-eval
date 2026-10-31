@@ -4,7 +4,7 @@ model: Qwen/Qwen3-1.7B
 
 lora: {r: 16, lora_alpha: 32, lora_dropout: 0.05, target_modules: all-linear}
 
-# one epoch over 20,400 examples; effective batch 16
+# one epoch over 10,400 examples; effective batch 16
 sft:
   learning_rate: 2.0e-4
   num_train_epochs: 1
