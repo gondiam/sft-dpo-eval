@@ -1,0 +1,53 @@
+{
+ "stage": "base",
+ "seed": 0,
+ "config": {
+  "model": "Qwen/Qwen3-1.7B",
+  "lora": {
+   "r": 16,
+   "lora_alpha": 32,
+   "lora_dropout": 0.05,
+   "target_modules": "all-linear"
+  },
+  "sft": {
+   "learning_rate": 0.0002,
+   "num_train_epochs": 1,
+   "per_device_train_batch_size": 4,
+   "gradient_accumulation_steps": 4,
+   "max_length": 1024,
+   "lr_scheduler_type": "cosine",
+   "warmup_steps": 30
+  },
+  "dpo": {
+   "learning_rate": 2e-05,
+   "beta": 0.1,
+   "num_train_epochs": 1,
+   "per_device_train_batch_size": 2,
+   "gradient_accumulation_steps": 8,
+   "max_length": 1024,
+   "lr_scheduler_type": "cosine",
+   "warmup_steps": 10
+  },
+  "samples_per_item": 4,
+  "generation": {
+   "max_new_tokens": 256,
+   "batch_size": 16
+  },
+  "smoke": {
+   "items": 200,
+   "eval_items": 20,
+   "max_steps": 10
+  }
+ },
+ "versions": {
+  "python": "3.13.15",
+  "torch": "2.11.0+cu128",
+  "transformers": "5.22.1",
+  "trl": "1.17.1",
+  "peft": "0.21.2",
+  "gpu": "Tesla T4"
+ },
+ "gpu_hours": {
+  "eval": 0.184
+ }
+}

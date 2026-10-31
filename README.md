@@ -33,10 +33,12 @@ are Holm-adjusted over the 3 comparisons.
 **Reference point:** always answering "yes" scores **55.2%** on this test set
 (276 yes / 169 no / 55 maybe). A model below that has learned nothing useful.
 
-**What this test set can detect:** with 500 paired items, differences smaller
-than about TODO points are not detectable with 80% power
-(`llm_judge_stats.smallest_detectable_difference`, computed from the base
-model's accuracy before training). Smaller differences are reported, but not
+**What this test set can detect:** the base model scores 38.6% on test (below
+the always-"yes" reference: it answers "maybe" on 330 of 500 items). From that,
+with 500 paired items, 80% power and alpha = 0.05, the smallest detectable change
+is 4.8 points if 15% of items change outcome between stages, and 6.9 points if
+30% do (`llm_judge_stats.smallest_detectable_difference`). Computed before any
+SFT result was seen, as preregistered. Smaller differences are reported, but not
 claimed.
 
 ## What got worse
