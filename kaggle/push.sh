@@ -2,7 +2,7 @@
 # Run one stage on a Kaggle T4: kaggle/push.sh smoke | base | sft <seed> | dpo <seed>
 # Kaggle clones the repo from GitHub at HEAD, so HEAD must be pushed first.
 # Fetch the results afterwards with:
-#   uvx kaggle kernels output $KAGGLE_USER/<slug> -p /tmp/out && cp -r /tmp/out/results/{predictions,runs} results/
+#   uvx --with six kaggle kernels output $KAGGLE_USER/<slug> -p /tmp/out && cp -r /tmp/out/results/{predictions,runs} results/
 set -eu
 user=${KAGGLE_USER:-gonzalodazamor}
 stage=$1
@@ -24,5 +24,5 @@ cat > "$dir/kernel-metadata.json" <<JSON
  "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
  "kernel_sources": $sources, "dataset_sources": [], "competition_sources": []}
 JSON
-uvx kaggle kernels push -p "$dir" --accelerator NvidiaTeslaT4
-echo "status: uvx kaggle kernels status $user/$slug"
+uvx --with six kaggle kernels push -p "$dir" --accelerator NvidiaTeslaT4
+echo "status: uvx --with six kaggle kernels status $user/$slug"
