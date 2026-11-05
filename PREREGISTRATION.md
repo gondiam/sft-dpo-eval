@@ -58,4 +58,6 @@ reported but not claimed.
 
 ## Deviations
 
-None yet.
+None to the design above. For the record: SFT seeds 0 and 1 ran at `ccde61e`;
+SFT seed 2 and all DPO runs ran at `7f9cc20`. Those commits differ only in
+`README.md` and the base model's results, not in code, data or config.
