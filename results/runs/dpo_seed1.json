@@ -1,0 +1,115 @@
+{
+ "stage": "dpo",
+ "seed": 1,
+ "config": {
+  "model": "Qwen/Qwen3-1.7B",
+  "lora": {
+   "r": 16,
+   "lora_alpha": 32,
+   "lora_dropout": 0.05,
+   "target_modules": "all-linear"
+  },
+  "sft": {
+   "learning_rate": 0.0002,
+   "num_train_epochs": 1,
+   "per_device_train_batch_size": 4,
+   "gradient_accumulation_steps": 4,
+   "max_length": 1024,
+   "lr_scheduler_type": "cosine",
+   "warmup_steps": 30
+  },
+  "dpo": {
+   "learning_rate": 2e-05,
+   "beta": 0.1,
+   "num_train_epochs": 1,
+   "per_device_train_batch_size": 2,
+   "gradient_accumulation_steps": 8,
+   "max_length": 1024,
+   "lr_scheduler_type": "cosine",
+   "warmup_steps": 10
+  },
+  "samples_per_item": 4,
+  "generation": {
+   "max_new_tokens": 256,
+   "batch_size": 16
+  },
+  "smoke": {
+   "items": 200,
+   "eval_items": 20,
+   "max_steps": 10
+  }
+ },
+ "versions": {
+  "python": "3.13.16",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.22.1",
+  "trl": "1.17.1",
+  "peft": "0.21.2",
+  "gpu": "Tesla T4"
+ },
+ "dpo": {
+  "pairs": 412,
+  "log_history": [
+   {
+    "loss": 0.6926854610443115,
+    "grad_norm": 1.3747079372406006,
+    "learning_rate": 1.8e-05,
+    "entropy": 1.476300847530365,
+    "num_tokens": 143010.0,
+    "logits/chosen": 0.32598895981859666,
+    "logits/rejected": 0.2819785214559426,
+    "mean_token_accuracy": 0.7854234062135219,
+    "rewards/chosen": -0.004923923993646895,
+    "rewards/rejected": -0.0058621529814445236,
+    "rewards/accuracies": 0.4125,
+    "rewards/margins": 0.0009382289783388842,
+    "logps/chosen": -51.94329187870026,
+    "logps/rejected": -40.91130886077881,
+    "epoch": 0.3883495145631068,
+    "step": 10
+   },
+   {
+    "loss": 0.6864583015441894,
+    "grad_norm": 1.6634544134140015,
+    "learning_rate": 8.04909677983872e-06,
+    "entropy": 1.5252082094550132,
+    "num_tokens": 292568.0,
+    "logits/chosen": 0.2861974953512149,
+    "logits/rejected": 0.28155831598444253,
+    "mean_token_accuracy": 0.7688246130943298,
+    "rewards/chosen": -0.03820368602173403,
+    "rewards/rejected": -0.052079669944941995,
+    "rewards/accuracies": 0.6,
+    "rewards/margins": 0.013875983108300715,
+    "logps/chosen": -54.46586354970932,
+    "logps/rejected": -39.99466359615326,
+    "epoch": 0.7766990291262136,
+    "step": 20
+   },
+   {
+    "train_runtime": 497.3771,
+    "train_samples_per_second": 0.828,
+    "train_steps_per_second": 0.052,
+    "total_flos": 3740564964114432.0,
+    "train_loss": 0.6878588016216571,
+    "entropy": 1.5238852138104646,
+    "num_tokens": 378667.0,
+    "logits/chosen": 0.2600434892293516,
+    "logits/rejected": 0.28289026758416314,
+    "mean_token_accuracy": 0.7894420118435569,
+    "rewards/chosen": -0.06804451371198925,
+    "rewards/rejected": -0.09161863354561121,
+    "rewards/accuracies": 0.6521739130434783,
+    "rewards/margins": 0.023574120648529217,
+    "logps/chosen": -51.874739792035975,
+    "logps/rejected": -43.0100563298101,
+    "epoch": 1.0,
+    "step": 26
+   }
+  ]
+ },
+ "gpu_hours": {
+  "train": 0.15,
+  "eval": 0.213
+ }
+}
